@@ -5,7 +5,7 @@ const port = 3001;
 
 app.use(express.json());
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://glosleep-mongodb:27017/glosleep_inventory';
+const mongoUri = process.env.MONGODB_INVENTORY_URI || 'mongodb://glosleep-mongodb:27017/glosleep_inventory';
 mongoose.connect(mongoUri)
   .then(() => console.log('Inventory Service connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));

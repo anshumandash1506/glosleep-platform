@@ -6,7 +6,7 @@ const port = 3002;
 
 app.use(express.json());
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://glosleep-mongodb:27017/glosleep_orders';
+const mongoUri = process.env.MONGODB_ORDER_URI || 'mongodb://glosleep-mongodb:27017/glosleep_orders';
 mongoose.connect(mongoUri)
   .then(() => console.log('Order Service connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));

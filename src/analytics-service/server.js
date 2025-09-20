@@ -5,7 +5,7 @@ const port = 3004;
 
 app.use(express.json());
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://glosleep-mongodb:27017/glosleep_analytics';
+const mongoUri = process.env.MONGODB_ANALYTICS_URI || 'mongodb://glosleep-mongodb:27017/glosleep_analytics';
 mongoose.connect(mongoUri)
   .then(() => console.log('Analytics Service connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
