@@ -3,7 +3,14 @@
 A production-grade microservices project for DevOps and cloud learning.
 
 ## Project Log
-
+### Day 1 - $(date +%Y-%m-%d)
+*   **Goal:** Define the architectural foundation and tech stack.
+*   **Progress:**
+    *   Created and populated `overview.md` and `architecture-decisions.md`.
+    *   Defined the five core microservices and their responsibilities.
+    *   Finalized key technology choices (Node.js, MongoDB, K8s) with rationale.
+*   **Next Steps:** Implement the Auth Service with Dockerfile and K8s manifests.
+*   **Decisions:** Formalized architecture decisions in an ADR log for maintainability.
 ### Day 1 - $(date +%Y-%m-%d)
 *   **Goal:** Initialize the project repository and foundational documentation structure.
 *   **Progress:** 
