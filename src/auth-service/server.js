@@ -9,7 +9,7 @@ const port = 3000;
 app.use(express.json());
 
 // Connect to MongoDB
-const mongoUri = process.env.MONGODB_URI || 'mongodb://glosleep-mongodb:27017/glosleep_auth';
+const mongoUri = process.env.MONGODB_AUTH_URI || 'mongodb://glosleep-mongodb:27017/glosleep_auth';
 mongoose.connect(mongoUri)
   .then(() => console.log('Auth Service connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));

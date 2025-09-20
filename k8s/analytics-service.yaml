@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: analytics-service
+  labels:
+    app: glosleep
+    tier: backend
+    service: analytics
+spec:
+  selector:
+    app: analytics-service
+  ports:
+  - port: 80
+    targetPort: 3004
+  type: ClusterIP
