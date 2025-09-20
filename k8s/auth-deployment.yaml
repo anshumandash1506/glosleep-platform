@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  labels:
+    app: glosleep
+    tier: backend
+    service: auth
+spec:
+  replicas: 2  # Runs 2 instances for basic high availability
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+        app.kubernetes.io/name: auth-service
+        app.kubernetes.io/part-of: glosleep-platform
+    spec:
+      containers:
+      - name: auth-service
+        # You will replace this with your actual image name after building it
+        image: placeholdername/auth-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000  # Must match the port your Node.js app listens on
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: MONGODB_URI
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: JWT_SECRET
+        # Health Checks are CRITICAL for production K8s
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30  # Give the app time to start up
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        # Resource limits prevent a faulty pod from consuming all node resources
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"

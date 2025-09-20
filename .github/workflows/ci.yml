@@ -1,0 +1,84 @@
+name: Build Docker Images
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop, main ]
+
+jobs:
+  build:
+    name: Build and Export
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Auth Service
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src/auth-service
+        tags: auth-service:${{ github.sha }}
+        outputs: type=docker,dest=/tmp/auth-service-${{ github.sha }}.tar
+
+    - name: Build Inventory Service
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src/inventory-service
+        tags: inventory-service:${{ github.sha }}
+        outputs: type=docker,dest=/tmp/inventory-service-${{ github.sha }}.tar
+
+    - name: Build Order Service
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src/order-service
+        tags: order-service:${{ github.sha }}
+        outputs: type=docker,dest=/tmp/order-service-${{ github.sha }}.tar
+
+    - name: Build Procurement Service
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src/procurement-service
+        tags: procurement-service:${{ github.sha }}
+        outputs: type=docker,dest=/tmp/procurement-service-${{ github.sha }}.tar
+
+    - name: Build Analytics Service
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src/analytics-service
+        tags: analytics-service:${{ github.sha }}
+        outputs: type=docker,dest=/tmp/analytics-service-${{ github.sha }}.tar
+
+    - name: Upload Auth Service Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: auth-service-image
+        path: /tmp/auth-service-${{ github.sha }}.tar
+
+    - name: Upload Inventory Service Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: inventory-service-image
+        path: /tmp/inventory-service-${{ github.sha }}.tar
+
+    - name: Upload Order Service Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: order-service-image
+        path: /tmp/order-service-${{ github.sha }}.tar
+
+    - name: Upload Procurement Service Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: procurement-service-image
+        path: /tmp/procurement-service-${{ github.sha }}.tar
+
+    - name: Upload Analytics Service Image
+      uses: actions/upload-artifact@v4
+      with:
+        name: analytics-service-image
+        path: /tmp/analytics-service-${{ github.sha }}.tar

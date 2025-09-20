@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  MONGODB_URI: "mongodb://glosleep-mongodb:27017/glosleep_auth"
+  # You can add other non-sensitive configs here later

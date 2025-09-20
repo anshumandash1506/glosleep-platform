@@ -1,0 +1,74 @@
+
+
+
+
+
+Last Updated: 20-09-2025
+User: Anshuman Dash
+Goal: Build a production-grade, hands-on DevOps project for an interview at InfraCloud Technologies.
+
+1. Project Origin & Business Context
+Company: Global Sleep Solutions Pvt. Ltd. (Brand: GloSleep Mattresses)
+
+Business: Sells mattresses, pillows, and foam. Manages a supply chain from manufacturers to distributors.
+
+Project Goal: To build a real-world "GloSleep Order Management" application to demonstrate deep, practical DevOps, Cloud, and Infrastructure automation skills.
+
+2. Technical Vision & Stack Decisions (Architecture Decisions Record)
+Architecture: Microservices (5 core services).
+
+Services: Auth, Inventory, Order, Procurement, Analytics.
+
+Backend: Node.js + Express for all services.
+
+Database: MongoDB (deployed via Bitnami Helm chart with persistence).
+
+Orchestration: Kubernetes (local: Kind, target: AWS EKS).
+
+CI/CD: GitHub Actions.
+
+IaC: Terraform (for future AWS setup).
+
+Monitoring: Prometheus + Grafana stack.
+
+Docs: Docs-as-Code approach in /docs directory.
+
+3. Current Project State (As of 20-09-2025)
+Repository: https://github.com/anshumandash1506/glosleep-platform
+
+Code Complete: All 5 microservices are implemented in /src with Dockerfiles and health checks.
+
+Documentation: Foundation is laid in /docs with ADRs and overview.
+
+Pending DevOps Tasks:
+
+Deploy MongoDB to Kind cluster via Helm.
+
+Write Kubernetes Manifests (Deployments, Services) for all 5 services.
+
+Build a GitHub Actions CI/CD workflow to test, build, and push images.
+
+Deploy the full stack to Kubernetes.
+
+Set up monitoring with Prometheus & Grafana.
+
+4. Key Narrative for Interview (The "Story")
+The project is designed to showcase:
+
+Automation First: From code commit to deployed container.
+
+Production Mindset: Health checks, security (non-root users), persistence, monitoring.
+
+Cloud-Native Expertise: Kubernetes, Helm, microservices design.
+
+Business Understanding: The services directly map to real business domains (Sales, Inventory, Procurement).
+
+Problem-Solving: The approach to solving the local image issue with a professional CI/CD pipeline.
+
+5. Immediate Next Steps
+Deploy Database: helm install glosleep-mongodb bitnami/mongodb --set auth.rootPassword=... --set persistence.enabled=true
+
+Create K8s Manifests: Write YAML for each service's Deployment and Service.
+
+Create CI/CD Pipeline: Build GitHub Actions workflow to build and push images on git push.
+
