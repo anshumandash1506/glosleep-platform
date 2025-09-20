@@ -2,9 +2,9 @@ name: GloSleep CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main,develop" ]
+    branches: [ develop, main ]
   pull_request:
-    branches: [ "main,develop" ]
+    branches: [ develop, main ]
 
 env:
   REGISTRY: docker.io
