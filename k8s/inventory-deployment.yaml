@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: inventory-service
-        image: inventory-service:latest
-        imagePullPolicy: Never
+        image: docker.io/anshumandash1506/glosleep-inventory-service:develop
+        imagePullPolicy: Always
         ports:
         - containerPort: 3001
         env:

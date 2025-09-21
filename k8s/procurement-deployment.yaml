@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: procurement-service
-        image: procurement-service:latest
-        imagePullPolicy: Never
+        image: docker.io/anshumandash1506/glosleep-procurement-service:develop
+        imagePullPolicy: Always
         ports:
         - containerPort: 3003
         env:

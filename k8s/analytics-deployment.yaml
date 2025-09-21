@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: analytics-service
-        image: analytics-service:latest
-        imagePullPolicy: Never
+        image: docker.io/anshumandash1506/glosleep-analytics-service:develop
+        imagePullPolicy: Always
         ports:
         - containerPort: 3004
         env:
