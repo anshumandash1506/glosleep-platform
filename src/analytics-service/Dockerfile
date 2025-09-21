@@ -1,11 +1,11 @@
 # Build stage
-FROM node:18-alpine AS builder
+FROM node:18-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --only=production
 
 # Runtime stage
-FROM node:18-alpine
+FROM node:18-slim
 RUN addgroup -g 1001 -S nodejs && adduser -S nodeuser -u 1001
 WORKDIR /app
 COPY --from=builder --chown=nodeuser:nodejs /app/node_modules ./node_modules
