@@ -6,7 +6,7 @@ RUN npm install --only=production
 
 # Runtime stage
 FROM node:18-slim
-RUN addgroup -g 1001 -S nodejs && adduser -S nodeuser -u 1001
+RUN addgroup -g 1001 nodejs && adduser -u 1001 -G nodejs nodeuser -D
 WORKDIR /app
 COPY --from=builder --chown=nodeuser:nodejs /app/node_modules ./node_modules
 COPY --chown=nodeuser:nodejs . .
